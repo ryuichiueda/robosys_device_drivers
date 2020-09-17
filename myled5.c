@@ -5,7 +5,7 @@
 MODULE_AUTHOR("Ryuichi Ueda");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
-MODULE_VERSION("0.1");
+MODULE_VERSION("0.0.1");
 
 static dev_t dev;
 static struct cdev cdv;
