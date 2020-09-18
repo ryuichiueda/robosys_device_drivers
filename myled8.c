@@ -2,7 +2,7 @@
 #include <linux/fs.h>
 #include <linux/cdev.h>
 #include <linux/device.h>
-#include <asm/uaccess.h>
+#include <linux/uaccess.h>
 
 MODULE_AUTHOR("Ryuichi Ueda");
 MODULE_DESCRIPTION("driver for LED control");
@@ -16,7 +16,7 @@ static struct class *cls = NULL;
 static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
 	char c;
-	if(raw_copy_from_user(&c,buf,sizeof(char)))
+	if(copy_from_user(&c,buf,sizeof(char)))
 		return -EFAULT;
 
 	printk(KERN_INFO "receive %c\n",c);

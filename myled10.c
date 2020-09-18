@@ -2,7 +2,7 @@
 #include <linux/fs.h>
 #include <linux/cdev.h>
 #include <linux/device.h>
-#include <asm/uaccess.h>
+#include <linux/uaccess.h>
 #include <linux/io.h>
 
 MODULE_AUTHOR("Ryuichi Ueda");
@@ -19,7 +19,7 @@ static volatile u32 *gpio_base = NULL;
 static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
 	char c;
-	if(raw_copy_from_user(&c,buf,sizeof(char)))
+	if(copy_from_user(&c,buf,sizeof(char)))
 		return -EFAULT;
 
 	if(c == '0')
